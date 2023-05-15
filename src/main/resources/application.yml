@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://DB주소?serverTimezone=Asia/Seoul
+    username: 디비ID
+    password: 디비PW
+  servlet:
+    multipart:
+      max-file-size:
+        4MB
+  mail:
+    host: smtp.naver.com
+    port: 465
+    username: '네이버메일'
+    password: '네이버비번'
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+            required: true
+  #mybatis
+mybatis:
+  type-aliases-package: com.bitnc4.dto
+  mapper-locations:
+  - /mapper/**/*.xml

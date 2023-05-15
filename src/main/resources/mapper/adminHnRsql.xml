@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitnc4.mapper.AdminHnRMapper">
+    <select id="getHotels" resultType="HotelDto">
+        select * from hotel;
+    </select>
+    <select id="getRoomsByHotelNum" resultType="RoomDto" parameterType="int">
+        select * from room where hotelnum=#{hotelnum} order by roomtype, num
+    </select>
+    <select id="getHotelByHotelNum" resultType="HotelDto" parameterType="int">
+        select * from hotel where num=#{hotelnum}
+    </select>
+    <update id="updateHotelDetail" parameterType="HotelDto" useGeneratedKeys="true" keyProperty="num">
+        <if test="photo != null">
+            update hotel set name=#{name}, addr=#{addr}, phone=#{phone}, photo=#{photo}, memo=#{memo} where num=#{num}
+        </if>
+        <if test="photo == null">
+            update hotel set name=#{name}, addr=#{addr}, phone=#{phone}, memo=#{memo} where num=#{num}
+        </if>
+    </update>
+    <insert id="insertHotel" parameterType="HotelDto" useGeneratedKeys="true" keyProperty="num">
+        insert into hotel (name,addr,phone,photo,memo) values (#{name},#{addr},#{phone},#{photo},#{memo})
+    </insert>
+    <select id="getRoomTypesOfHotel" parameterType="int" resultType="java.lang.String">
+        select roomtype from room where hotelnum=#{hotelnum} group by roomtype;
+    </select>
+    <insert id="insertRoom" parameterType="RoomDto" useGeneratedKeys="true" keyProperty="num">
+        insert into room (hotelnum,roomtype,roomprice,roommemo,roomdetail,islock) values (#{hotelnum},#{roomtype},#{roomprice},#{roommemo},#{roomdetail},#{islock});
+    </insert>
+    <update id="deleteRoom" parameterType="int">
+        delete from room where num=#{roomnum}
+    </update>
+    <select id="getMemberCount" resultType="int">
+        select count(*) from member where user_level&lt;10
+    </select>
+    <select id="getHotelCount" resultType="int">
+        select count(*) from hotel
+    </select>
+</mapper>
