@@ -33,6 +33,12 @@ public class MainController {
         return "/main/chat/room";
     }
 
+    @RequestMapping("/ping")
+    @ResponseBody
+    public String ping(){
+        return "pong";
+    }
+
     @GetMapping("/")
     public String main(Model m){
         List<HotelDto> list = adminHnRService.getHotels();
