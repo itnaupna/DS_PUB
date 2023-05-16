@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+		"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+		"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="mainLayout" template="/WEB-INF/layout/mainlayout.jsp">
+		<put-attribute name="header" value="/WEB-INF/layout/header.jsp"/>
+		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"/>
+		<put-attribute name="floating" value="/WEB-INF/layout/floatingchat.jsp"/>
+	</definition>
+
+	<!-- 관리자 대시보드 레이아웃 디자인 / 최용주 -->
+	<definition name="adminLayout" template="/WEB-INF/layout/adminlayout/adminlayout.jsp">
+		<put-attribute name="side" value="/WEB-INF/layout/adminlayout/side.jsp"/>
+		<put-attribute name="top" value="/WEB-INF/layout/adminlayout/top.jsp"/>
+		<put-attribute name="adminmain" value="/WEB-INF/layout/adminlayout/adminmain.jsp"/>
+	</definition>
+
+	<!-- 마이페이지 레이아웃 이상혁 -->
+	<definition name="myPageLayout" template="/WEB-INF/layout/mypagelayout/mypagelayout.jsp">
+		<put-attribute name="header2" value="/WEB-INF/layout/mypagelayout/header2.jsp"/>
+		<put-attribute name="info" value="/WEB-INF/layout/mypagelayout/info.jsp"/>
+		<put-attribute name="mypagecontent" value="/WEB-INF/layout/mypagelayout/mypagemain.jsp"/>
+		<put-attribute name="footer2" value="/WEB-INF/layout/mypagelayout/footer2.jsp"/>
+	</definition>
+
+	<!-- 아무 레이아웃 없는것 -->
+	<definition name="noLayout" template="/WEB-INF/layout/nolayout/nolayout.jsp">
+		<put-attribute name="main" value="/WEB-INF/layout/nolayout/main.jsp"/>
+	</definition>
+
+
+
+	<definition name="/main" extends="mainLayout">
+		<put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
+	</definition>
+	<definition name="/admin" extends="adminLayout">
+		<put-attribute name="adminmain" value="/WEB-INF/layout/adminlayout/adminmain.jsp"/>
+	</definition>
+
+	<definition name="/mypage" extends="myPageLayout">
+		<put-attribute name="mypagecontent" value="/WEB-INF/layout/mypagelayout/mypagecontent.jsp"/>
+	</definition>
+
+
+	<!-- wild card macro -->
+	<definition name="/main/*/*" extends="mainLayout">
+		<put-attribute name="main" value="/WEB-INF/{1}/{2}.jsp"/>
+	</definition>
+	<definition name="/admin/*/*" extends="adminLayout">
+		<put-attribute name="adminmain" value="/WEB-INF/admin/{1}/{2}.jsp"/>
+	</definition>
+	<definition name="/mypage/*" extends="myPageLayout">
+		<put-attribute name="mypagecontent" value="/WEB-INF/mypage/{1}.jsp"/>
+	</definition>
+	<definition name="/mypage/*/*" extends="myPageLayout">
+		<put-attribute name="mypagecontent" value="/WEB-INF/{1}/{2}.jsp"/>
+	</definition>
+	<definition name="/nolayout/*" extends="noLayout">
+		<put-attribute name="main" value="/WEB-INF/{1}.jsp"/>
+	</definition>
+</tiles-definitions>

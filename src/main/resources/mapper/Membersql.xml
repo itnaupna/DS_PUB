@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitnc4.mapper.MemberMapper">
+    <select id="memberCnt" resultType="int">
+        select count(*) from member
+    </select>
+
+    <select id="overlapEmail" parameterType="String" resultType="int">
+        select exists(select email from member where email = #{email})
+    </select>
+
+    <select id="overlapId" parameterType="String" resultType="int">
+        select exists(select id from member where id = #{id})
+    </select>
+
+    <select id="overlapIdEmail" parameterType="Map" resultType="int">
+        select exists(select id, email from member where id = #{id} and email = #{email})
+    </select>
+
+    <insert id="joinMember" parameterType="MemberDto">
+        insert into member (id, pw, user_name, email, phone, user_level, addr, point)
+        values (#{id}, sha2(#{pw}, 256), #{user_name}, #{email}, #{phone}, 1, #{addr}, 0)
+    </insert>
+
+    <select id="joinSiteMember" parameterType="String" resultType="int">
+        select exists(select * from member where id = #{id} and issocial = 0)
+    </select>
+
+    <select id="access" parameterType="Map" resultType="MemberDto">
+        select * from member where id = #{id} and pw = sha2(#{pw}, 256) and not account_lock = 5
+    </select>
+
+
+    <select id="searchInfoToEmail" parameterType="String" resultType="MemberDto">
+        select * from member where email = #{email}
+    </select>
+
+    <update id="changePassword" parameterType="Map">
+        update member set pw = sha2(#{pw}, 256), account_lock = 0 where id = #{id}
+    </update>
+
+    <update id="accountLockCount" parameterType="String">
+        update member set account_lock = account_lock + 1 where id = #{id}
+    </update>
+
+    <select id="showLockCount" parameterType="String" resultType="int">
+        select account_lock from member where id = #{id}
+    </select>
+
+    <update id="resetLockCount" parameterType="String">
+        update member set account_lock = 0 where id = #{id}
+    </update>
+
+    <insert id="socialJoin" parameterType="MemberDto">
+        insert into member (id, pw, user_name, email, phone, user_level, addr, point, issocial)
+        values (concat(#{social}, #{id}), sha2(#{id}, 256), #{user_name},concat(#{social}, #{email}), #{id}, 1, concat(#{social}, 'user'), 0, #{issocial})
+    </insert>
+
+    <select id="getSocialMember" parameterType="Map" resultType="MemberDto">
+        select * from member where id = concat(#{social}, #{id}) and issocial = #{issocial}
+    </select>
+
+    <select id="getMemberByNumber" parameterType="int" resultType="MemberDto">
+        select * from member where num=#{num}
+    </select>
+</mapper>
