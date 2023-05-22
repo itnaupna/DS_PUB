@@ -26,7 +26,7 @@ naver.properties, application.yml
 ## 팀원
 |팀원|담당|Git URL|
 |-------------------|---|---|
-|최용주|뭔가했음|[Itnaupna](https://github.com/itnaupna)|
+|최용주|관리자페이지, 채팅|[Itnaupna](https://github.com/itnaupna)|
 |유찬민|뭔가했음|[Deko252](https://github.com/Deko252)|
 |이상혁|뭔가했음|[helloa1109](https://github.com/helloa1109)|
 |박재희|뭔가했음|[jaehhee](https://github.com/jaehhee)|
