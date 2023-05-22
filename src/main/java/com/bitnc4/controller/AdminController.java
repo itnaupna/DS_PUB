@@ -1,12 +1,11 @@
 package com.bitnc4.controller;
 
 import com.bitnc4.dto.HotelDto;
+import com.bitnc4.dto.NoticeDto;
 import com.bitnc4.dto.QnaBoardDto;
 import com.bitnc4.dto.RoomDto;
 import com.bitnc4.repo.ChatRoomRepository;
-import com.bitnc4.service.AdminHnRService;
-import com.bitnc4.service.AdminNoticeService;
-import com.bitnc4.service.AdminQnaServeice;
+import com.bitnc4.service.*;
 import lombok.extern.slf4j.Slf4j;
 import naver.cloud.NcpObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,12 +25,16 @@ import java.util.List;
 @Slf4j
 public class AdminController {
 
+@Autowired
+    AdminBookService adminBookService;
     @Autowired
     AdminHnRService adminHnRService;
     @Autowired
     AdminNoticeService adminNoticeService;
     @Autowired
     AdminQnaServeice adminQnaServeice;
+    @Autowired
+    HotelService hotelService;
     String bucketName="dreamsstaybucket";
     @Autowired
     NcpObjectStorageService ncp;
@@ -50,6 +55,10 @@ public class AdminController {
         data.put("MemberCount",adminHnRService.getMemberCount(false));
         data.put("HotelCount",adminHnRService.getHotelCount());
         data.put("Notice",adminNoticeService.getList(1));
+        QnaBoardDto d = new QnaBoardDto();
+        d.setAnswer("답변대기");
+        data.put("Qna",adminQnaServeice.getQnaList(-1,d));
+        data.put("QnaAnanwer",adminQnaServeice.getUnanswerCount());
         m.addAttribute("data",data);
 
         return "/admin";
@@ -92,25 +101,23 @@ public class AdminController {
         }
         return data.getNum()==0 ? adminHnRService.insertHotel(data) : adminHnRService.updateHotelDetail(data);
     }
-
+    //
     @PostMapping("/uploadp")
     @ResponseBody
-    public List<String> uploadp(List<MultipartFile> file){
+    public List<String> uploadp(List<MultipartFile> file,String folder){
+//        System.out.println(folder);
         List<String> result = new ArrayList<>();
         if(!file.get(0).getOriginalFilename().equals("")){
-            file.forEach(f-> result.add(ncp.uploadFile(bucketName,"room",f)));
+            file.forEach(f-> result.add(ncp.uploadFile(bucketName,folder,f)));
             return result;
         }
-
-        //System.out.println(file.getOriginalFilename());
-        //return file.getOriginalFilename();
         return null;
     }
     @PostMapping("/deletep")
     @ResponseBody
-    public boolean deletep(String name){
-        log.info("name : {}",name);
-        return ncp.deleteFile(bucketName,"room",name);
+    public boolean deletep(String name,String folder){
+//        log.info("name : {}",name);
+        return ncp.deleteFile(bucketName,folder,name);
     }
 
     @PostMapping("/writeroom")
@@ -144,13 +151,36 @@ public class AdminController {
         객실 추가
         Return : 추가된 객실의 RoomDto.getNum()
          */
-        return adminHnRService.insertRoom(roomDto);
+        log.info(roomDto.toString());
+        if(roomDto.getNum() == 0)
+            return adminHnRService.insertRoom(roomDto);
+        else {
+            adminHnRService.updateRoomSimpleInfo(roomDto);
+            return roomDto.getNum();
+        }
     }
 
     @PostMapping("/hotel/deleteroom/{roomnum}")
     @ResponseBody
     public int deleteRoom(@PathVariable int roomnum){
         return adminHnRService.deleteRoom(roomnum);
+    }
+
+    @GetMapping("/hotel/roomsimple/{roomnum}")
+    @ResponseBody
+    public RoomDto getSimpleInfo(@PathVariable int roomnum){
+        return adminHnRService.getRoomSimpleInfo(roomnum);
+    }
+
+    @PostMapping("/hotel/roomsimple")
+    @ResponseBody
+    public boolean updateSimpleInfo(RoomDto dto){
+        try{
+            adminHnRService.updateRoomSimpleInfo(dto);
+            return true;
+        }catch (Exception e) {
+            return false;
+        }
     }
 
     @GetMapping("/notice")
@@ -168,36 +198,68 @@ public class AdminController {
         return result;
     }
 
+    @PostMapping("/notice/write")
+    @ResponseBody
+    public int writeNotice(NoticeDto dto){
+        dto.setWriter("관리자");
+        if(dto.getNum()==0)
+            return adminNoticeService.writeNotice(dto);
+        else
+            return adminNoticeService.modifyNotice(dto);
+    }
+    @PostMapping("/notice/delete")
+    @ResponseBody
+    public boolean deleteNotice(int num){
+        NoticeDto dto = adminNoticeService.readNotice(num);
+        if(dto.getPhoto()!=null){
+            log.info("1");
+            if(!dto.getPhoto().equals("")){
+                log.info("2");
+                if(dto.getPhoto().contains(",")){
+                    log.info("3-1");
+                    for (String s : dto.getPhoto().split(",")) {
+                        deletep(s,"notice");
+                    }
+                }else{
+                    log.info("3-2");
+                    deletep(dto.getPhoto(),"notice");
+                }
+            }
+        }
+        return adminNoticeService.deleteNotice(dto.getNum());
+    }
+
+    @GetMapping("/notice/detail")
+    @ResponseBody
+    public NoticeDto readNotice(int num){
+        return adminNoticeService.readNotice(num);
+    }
+
 
     @GetMapping("/qna")
     public String qna(Model model)
     {
-        model.addAttribute("qnaList",adminQnaServeice.getQnaList(1));
-        model.addAttribute("page",adminQnaServeice.getQnaCount(1));
+        model.addAttribute("qnaList",adminQnaServeice.getQnaList(1,new QnaBoardDto()));
+        model.addAttribute("page",adminQnaServeice.getQnaCount(1,new QnaBoardDto()));
+        // 호텔 데이터 가져오기
+        List<HotelDto> hotelList = hotelService.getAllHotelData();
+        model.addAttribute("hotelList", hotelList);
 
         return "/admin/qna/list";
     }
 
-    @GetMapping("/qna/list/{page}")
-    @ResponseBody
-    public List<Object> getQnaList(@PathVariable int page)
-    {
-        List<Object> result = new ArrayList<>();
-        result.add(adminQnaServeice.getQnaList(page));
-        result.add(adminQnaServeice.getQnaCount(page));
-        return result;
-    }
-
     @GetMapping("/qna/content")
-    public String content(int num, Model model) {
-        {
-            QnaBoardDto dto = adminQnaServeice.getQna(num);
+    public String content(int num, Model model, HttpSession session)
+    {
 
-            model.addAttribute("dto", dto);
+        QnaBoardDto dto = adminQnaServeice.getQna(num);
+        model.addAttribute("dto", dto);
 
-            return "/admin/qna/content";
+        // 세션에 현재 페이지 정보 저장
+        session.setAttribute("currentPage", session.getAttribute("currentPage"));
 
-        }
+
+        return "/admin/qna/content";
 
     }
 
@@ -209,20 +271,57 @@ public class AdminController {
 
     }
 
-    @GetMapping("/getSearchQna")
+    @GetMapping("/qna/list/{page}")
     @ResponseBody
-    private List<QnaBoardDto> searchQnaList(String searchtype,String keyword, Model model, String qna_type, int category, String answer)
+    public List<Object> getQnaList(@PathVariable int page, String searchtype, String keyword, Model model,
+                                   String qna_type, int category, String answer, String hotelname, HttpSession session)
     {
+        List<Object> result = new ArrayList<>();
         QnaBoardDto dto = new QnaBoardDto();
         dto.setAnswer(answer);
         dto.setQna_type(qna_type);
         dto.setCategory(category);
+        dto.setHotelname(hotelname);
         dto.setSearchtype(searchtype);
         dto.setKeyword(keyword);
 
-        return adminQnaServeice.searchQnaList(dto);
+        session.setAttribute("currentPage", page);
+
+        /*System.out.println("page="+page);*/
+
+        result.add(adminQnaServeice.getQnaList(page,dto));
+        result.add(adminQnaServeice.getQnaCount(page, dto));
+
+
+
+        return result;
+    }
+
+    @GetMapping("/qna/delete")
+    public String deleteqna(QnaBoardDto dto)
+    {
+        adminQnaServeice.delQnaAnswer(dto);
+        return "redirect:/admin/qna/content?num="+dto.getNum();
 
     }
 
-}
+    @GetMapping("/book")
+    public String bookInit(Model m){
+        m.addAttribute("blst",adminBookService.getAll());
+        m.addAttribute("now",new Date());
+        return "/admin/book/list";
+    }
 
+    @PostMapping("/book/delete")
+    @ResponseBody
+    public boolean deleteBook(int num){
+        return adminBookService.deleteBook(num);
+    }
+
+    @PostMapping("/book/checkin")
+    @ResponseBody
+    public boolean checkinBook(int num){
+        return adminBookService.checkinBook(num);
+    }
+
+}

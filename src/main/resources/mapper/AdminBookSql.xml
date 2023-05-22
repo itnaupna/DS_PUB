@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitnc4.mapper.AdminBookMapper">
+
+<select id="getAll" resultType="Map">
+    select * from bookview order by checkin asc;
+</select>
+
+    <delete id="deleteBook" parameterType="int">
+        delete from book where num=#{num}
+    </delete>
+    <update id="checkinBook" parameterType="int">
+        update book set realcheckin=1 where num=#{num}
+    </update>
+
+</mapper>

@@ -4,13 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&family=Playfair+Display&family=Playfair+Display+SC&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&family=Playfair+Display&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-<%--font-family: 'Nanum Myeongjo', serif     font-family: 'Playfair Display SC', serif;;--%>
 <link rel="stylesheet" href="/css/member/login.css"/>
 
 <script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
@@ -56,7 +49,7 @@
         <form action="/book/nomemberbooksearch" method="post" id="search_nomember_book">
             <div id="nomembersearchbox">
                 <input type="text" class="login_input login_booksearch_input" name="searchnum" id="login_book_searchnum" placeholder="예약 번호">
-                <input type="text" class="login_input login_booksearch_input" name="bookpw" id="login_book_pw" placeholder="예약 비밀번호">
+                <input type="text" class="login_input login_booksearch_input" name="bookpw" id="login_book_pw" placeholder="휴대폰 번호">
                 <button type="button" id="booksearch">비회원 예약 확인</button>
                 <span class="login_subtext">회원이 되시면 더 많은 혜택이 있습니다.</span>
             </div>

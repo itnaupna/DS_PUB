@@ -4,7 +4,23 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<%--<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>--%>
+
 <style>
+
+
+    @import url('https://static.toss.im/tps/main.css');
+    @import url('https://static.toss.im/tps/others.css');
+
+    @font-face {
+        font-family: 'GmarketSansMedium';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+        font-weight: 700;
+        font-style: normal;
+    }
+
     /* 타이틀 */
     .res_main .res_title {
         font-size: 25px;
@@ -20,6 +36,7 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
+        font-family: 'GmarketSansMedium';
     }
 
     /* 메뉴바 글씨 */
@@ -37,49 +54,20 @@
         padding: 0 20px;
     }
 
-    /* 버튼 div */
-    .res_main .res_sel .res_btn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 170px;
-    }
-
-    /* 버튼 */
-    .res_main .res_sel .res_btn .r_btn {
-        font-size: 15px;
-        border-color: #000000;
-        border-width: thin;
-        width: 180px;
-        background-color: #F9F9F9;
-        height: 50px;
-        cursor: pointer;
-    }
-
-    .r_btn:hover {
-        border-image: linear-gradient(#12c2e9, #c471ed, #f64f59) 5;
-        background-color: white !important;
-    }
-
     /* 메뉴바 아래 전체 */
     .res_main .res_sel {
-        margin-top: 50px;
+        margin-top: 30px;
         /*border: 1px solid green;*/
         width: 1000px;
-        height: 1000px;
-        background-color: #F9F9F9;
+        height: 730px;
+        /*background-color: #F9F9F9;*/
+        font-family: 'Toss Product Sans', sans-serif;
     }
 
     /* 맨 아래 문구 */
     .res_main .res_bottom {
         /*border: 1px solid blue;*/
         margin-top: 70px;
-    }
-
-    /* 맨 아래 문구 간격 */
-    .res_main .res_bottom .bt_ul li {
-        color: #ccc;
-        margin-top: 10px;
     }
 
     /* 사이 줄 조절 */
@@ -90,100 +78,301 @@
         width: 950px;
     }
 
-    /* 아코디언 형식 설정 */
-    .aco_list {
-        list-style: none;
-        padding: 0;
-    }
-
-    /* ~ */
-    .aco_list li {
-        border-bottom: 1px solid #ddd;
-    }
-
-    /* ~ */
-    .aco_list li a {
-        display: block;
-        height: 50px;
-        padding-left: 20px;
-        line-height: 50px;
-        text-decoration: none;
-        transition: .2s;
-        color: black;
-    }
-
-    /* ~ */
-    .aco_list li a:hover {
-        background-color: #222;
-        color: #fff;
-    }
-
-    /* ~ */
-    .aco_list li .text_box {
-        display: none;
-        padding: 10px 40px;
-        color: #555;
-        cursor: pointer;
-    }
-
     /* 서브 문구 */
     .res_main .r_sub span {
         color: #ccc;
     }
 
-    #hotel_name, #checkin {
-        flex: 1;
-        border: none;
-        border-bottom: solid #aaaaaa 1px;
-        background: none;
-        padding-bottom: 10px;
-        padding-left: 10px;
-        position: relative;
-        font-size: 14px;
-        width: 400px;
-        margin-top: 30px;
-    }
+    /*.res_main .res_sel span {*/
+    /*    !*color: #ccc;*!*/
+    /*    margin-top: 20px;*/
+    /*}*/
 
-    .res_main .res_sel span {
-        color: #ccc;
-        margin-top: 20px;
-    }
-
-    .res_main .datepicker {
-        /*margin-top: 10px;*/
-        margin-left: 50%;
-        position: absolute;
-        visibility: hidden;
-    }
-
-    .res_main .datepicker .seldate {
-        width: 300px;
-    }
-
-    .res_main .date_sub {
-        /*border: 1px solid orangered;*/
-        margin-top: 20px;
-        font-size: 12px;
-    }
-
-    .res_main .res_sel .res_select #checkin {
-        margin-left: 20px;
-    }
-
-    .res_main .res_sel .res_select {
-        justify-content: space-between;
+    .nobook {
+        /*border: 1px solid red;*/
+        height: 400px;
+        text-align: center;
         display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        flex-direction: column;
+        margin-top: 200px;
     }
 
-    #tb_1:focus {
+    .bookbtn {
+        width: 300px;
+        height: 60px;
+        line-height: 60px;
+        border: 1px solid #ccc;
+        transition: transform .6s .6s ease-in,
+        box-shadow .6s .6s ease-in,
+        background .6s ease-out,
+        color .6s ease-out;
         background-color: white;
+        color: black;
+        font-size: 17px;
+        margin-top: 20px;
     }
 
-    .chtitle {
-        /*border: 1px solid aqua;*/
-        margin-top: 60px;
-        font-size: 13px;
+    .bookbtn:hover {
+        transform: rotateY(10deg);
+        box-shadow: -7px 7px 40px 0px rgba(0, 0, 0, 0.55);
+        background: black;
+        color: white;
+    }
+
+    /* 예약한 호텔 한 줄에 2개씩 */
+    .book_list {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .book_list .for_list {
+        flex-basis: calc(33.33% - 20px);
+        width: 100%;
+    }
+
+    .for_list {
+        border: none;
+        border-radius: 5px;
+        width: 650px;
+        height: 450px;
+        box-shadow: -4px 4px 7px 7px #dddddd;
+        margin-top: 30px;
+        background-color: white;
+        transition: transform 0.5s;
+    }
+
+    .for_list:hover {
+        box-shadow: -10px 10px 7px 7px #ccc;
+        transform: translateY(-7px);
+    }
+
+    .for_list span {
+        font-family: 'GmarketSansMedium';
+    }
+
+    .for_list {
+        /*font-weight: lighter;*/
+    }
+
+    .list_img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .book_name {
         color: #ccc;
+    }
+
+    .list1 {
+        border: none;
+        border-radius: 5px;
+        width: 100%;
+        /*height: 40px;*/
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        /*font-family: 'GmarketSansMedium';*/
+        font-weight: 700;
+        font-family: 'GmarketSansMedium';
+        margin-top: 15px;
+    }
+
+    .list_box {
+        box-shadow: -2px 2px 5px 5px #dddddd;
+        display: flex;
+        /*justify-content: space-around;*/
+        height: 50px;
+        flex-direction: column;
+    }
+
+    .list0 {
+        display: flex;
+        justify-content: space-around;
+
+    }
+
+    .list1 span {
+        font-family: 'GmarketSansMedium';
+        font-size: 16px;
+    }
+
+    .list2 {
+        display: flex;
+        justify-content: space-around;
+
+    }
+
+    .list2 span{
+        /*background-color: black;*/
+        /*color: white;*/
+        border: none;
+        border-bottom: 2px solid rgba(139, 69, 19, 0.5);
+
+        width: 120px;
+        text-align: center;
+        transition: transform 0.5s;
+        font-size: 15px;
+    }
+
+    .list2 span:hover{
+        transform: translateY(-5px);
+    }
+
+    .list3 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 15px;
+    }
+
+    .list4 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 15px;
+    }
+
+    .list5 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 15px;
+    }
+
+    .nobooktitle {
+        font-size: 20px;
+    }
+
+    .list_img img {
+        width: 100%;
+        height: 200px;
+        border-radius: 5px;
+    }
+
+    .nomemberbook {
+        height: 1200px;
+    }
+
+    .r_a1 a,
+    .r_a2 a,
+    .r_a3 a,
+    .r_a4 a {
+        color: #000;
+        text-decoration: none;
+        border-bottom: 2px solid transparent;
+        transition: border-bottom-color 0.3s ease-in-out;
+    }
+
+    .r_a1 a:hover,
+    .r_a2 a:hover,
+    .r_a3 a:hover,
+    .r_a4 a:hover {
+        border-bottom-color: #000;
+    }
+
+    .buttondiv {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .del_btn {
+        font-size: 13px;
+        letter-spacing: -.01em;
+        text-align: center;
+        vertical-align: middle;
+        background-color: black;
+        color: white;
+        border: thin solid #000000;
+        border-radius: 0;
+        cursor: pointer;
+        overflow: hidden;
+        z-index: 1;
+        width: 80px;
+        height: 30px;
+    }
+
+    .del_btn:hover {
+        transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+        background-color: white;
+        color: black;
+    }
+
+    .list_img {
+        position: relative;
+        height: 200px;
+    }
+
+    .list_img img {
+        width: 100%;
+        height: 100%;
+        /*object-fit: cover;*/
+    }
+
+    .list_img::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .list_img:hover::before {
+        opacity: 1;
+    }
+
+    .list_img::after {
+        content: "View Details";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        opacity: 0;
+        transition: opacity 0.5s;
+    }
+
+    .list_img:hover::after {
+        opacity: 1;
+    }
+
+    @media screen and (max-width: 768px) {
+        .res_main .res_room {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .res_main .res_room a {
+            padding: 0 10px;
+        }
+
+        .res_main .res_sel {
+            width: 100%;
+        }
+
+        /*!*.for_list {*!*/
+        /*!*    width: 100%;*!*/
+        /*!*}*!*/
+        /*.for_list {*/
+        /*    width: 50%;*/
+        /*}*/
     }
 
 </style>
@@ -200,7 +389,7 @@
             <a href="#">객실/패키지</a>
         </div>
         <div class="r_a2">
-            <a href="#">다이닝</a>
+            <a href="/mypage/dining">다이닝</a>
         </div>
         <div class="r_a3">
             <a href="#">액티비티</a>
@@ -211,116 +400,105 @@
     </div>
 
     <div class="res_sel">
-        <%-- 호텔 아코디언 --%>
-        <span>예약한 호텔을 선택해주세요 *</span>
-        <ul class="aco_list">
-            <li>
-                <a href="#">GRAND JOSUN</a>
-                <c:forEach var="dto" items="${list}">
-                    <p class="text_box" id="tb_1" data-value="${dto.num}">${dto.name}</p>
-                </c:forEach>
-            </li>
-        </ul>
-
-        <div class="datepicker">
-            <form>
-                <input class="form-control seldate flatpickr flatpickr-input" id="seldate" type="datetime-local"
-                       placeholder="select check in">
-            </form>
-        </div>
-
-        <div class="chtitle">
-            <span>호텔과 날짜를 확인해주세요 *</span>
-        </div>
-
-        <%-- 호텔 값 가져오기 --%>
-        <div class="res_select">
-            <input type="text" id="hotel_name" name="hotel_name" placeholder="호텔을 선택해주세요" readonly="readonly">
-        </div>
-        <div class="res_btn">
-            <button type="button" class="r_btn">기간 조회</button>
-        </div>
-
-        <div class="res_bottom">
-            <hr>
-            <ul class="bt_ul">
-                <li>
-                    온라인 예약 건에 한하여 조회가 가능하며, 현재일 기준 1년까지 제공됩니다.
-                </li>
-
-                <li>
-                    예약날짜 기준으로 현재부터 3개월 이후의 예약 내역이 우선 조회됩니다.
-                </li>
-
-                <li>
-                    과거 또는 미래의 예약내역을 조회하시려면 상단의 날짜를 변경해주십시오.
-                </li>
-
-                <li>
-                    레스케이프는 레스케이프 홈페이지에서 예약 확인이 가능합니다.
-                </li>
-
-                <li>
-                    메리어트 브랜드의 예약 내역은 해당 사이트에서 조회하실 수 있습니다.
-                </li>
-            </ul>
-        </div>
+        <c:choose>
+            <c:when test="${size == 0}">
+                <div class="nobook">
+                    <div class="nomemberbook">
+                        <p>${familyname}${firstname}님의 예약내역이 없습니다.</p>
+                        <p class="nobooktitle">다양한 Dream Stay의 상품을 예약해보세요</p>
+                        <button type="button" onclick="location.href='/'" class="bookbtn">예약하기</button>
+                    </div>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <div class="book_info">
+                    <span class="book_name">${familyname}${firstname}님 예약 정보</span>
+                    <div class="book_list">
+                        <c:forEach var="list" items="${data}" varStatus="i">
+                            <div class="for_list">
+                                <div class="wrapper">
+                                    <div class="list_img">
+                                        <img src="https://kr.object.ncloudstorage.com/dreamsstaybucket/hotel/${list.photo}">
+                                    </div>
+                                    <div class="list_data">
+                                        <div class="list_box">
+                                            <div class="list0">
+                                                <span>체크인</span><span>체크아웃</span>
+                                            </div>
+                                            <div class="list2">
+                                                <span>
+                                                <fmt:parseDate value='${list.checkin}' var='checkin'
+                                                               pattern='yyyy-mm-dd'/>
+                                                <fmt:formatDate value="${checkin}" pattern="yyyy-mm-dd"/>
+                                                    </span>
+                                                <span>
+                                                <fmt:parseDate value='${list.checkout}' var='checkout'
+                                                               pattern='yyyy-mm-dd'/>
+                                                <fmt:formatDate value="${checkout}" pattern="yyyy-mm-dd"/><br>
+                                                    </span>
+                                            </div>
+                                        </div>
+                                        <div class="list1">
+                                            <span>Type :</span>${list.roomtype}<br>
+                                        </div>
+                                        <div class="list3">
+                                            <span>성인 :</span> ${list.adult}명
+                                            <span>어린이 :</span> ${list.kids}명<br>
+                                        </div>
+                                        <div class="list4">
+                                            <c:if test="${empty list.memo}">
+                                                <span>요구사항이 없습니다.</span>
+                                            </c:if>
+                                            <c:if test="${not empty list.memo}">
+                                                <span>요구사항 :</span> ${list.memo}<br>
+                                            </c:if>
+                                        </div>
+                                        <div class="list5">
+                                            <span>가격 :</span><fmt:formatNumber value="${list.total_price}"
+                                                                               type="currency"/>
+                                        </div>
+                                        <div class="buttondiv">
+                                            <button type="button" id="del_btn" class="del_btn"
+                                                    onclick="deletebook(${list.booknum});">예약취소
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <c:if test="${i.count%3==0}">
+                                <br>
+                            </c:if>
+                        </c:forEach>
+                    </div>
+                </div>
+            </c:otherwise>
+        </c:choose>
     </div>
 </div>
 
-<script type="text/javascript">
-    // 호텔 리스트 아코디언
-    $(function () {
-        const acoAco = $(".aco_list li a");
-
-        acoAco.on('click', function () {
-            const item = $(this);
-
-            acoAco.parent().find('.text_box').slideUp();
-
-            if (item.hasClass('active')) {
-                item.find('.text_box').slideUp();
-                item.removeClass('active');
-            } else {
-                item.parent().find('.text_box').slideDown();
-                acoAco.removeClass('active');
-                item.addClass('active');
-            }
-
-            item.parent().find('.text_box').slideDown();
-        });
-    });
-
-    // 호텔 벨류값 가져오기 //
-    function saveValue(element) {
-        document.getElementById("selected_value").value = element.innerHTML.trim();
+<script>
+    function deletebook(num) {
+        if (!confirm("예약 취소하시겠습니까?")) return;
+        location.href = "/mypage/deletebook?num=" + num;
     }
 
-    function saveHotelName(hotelName) {
-        document.getElementById("hotel_name").value = hotelName;
-    }
-
-    document.querySelectorAll(".text_box").forEach(function (textBox) {
-        textBox.addEventListener("click", function () {
-            saveHotelName(this.textContent.trim());
-        });
-    });
-
-    // // 캘린더 벨류 값
-    // const seldate = document.querySelector('#seldate');
-    // const checkin = document.querySelector('#checkin');
-    //
-    // seldate.addEventListener('input', () => {
-    //     checkin.value = seldate.value;
+    // $(document).on("click", ".header_hotel_list", function() {
+    //     var num = $(this).attr("value");
+    //     location.href = "/hotel/hoteldetail?num=" + num;
     // });
+    //
+    // $(function() {
+    //     $.ajax({
+    //         url: "/hotel/hotellist",
+    //         type: "get",
+    //         success: function(data) {
+    //             var hotelList = "";
+    //             $.each(data, function(i, d) {
+    //                 hotelList += '<li class="header_hotel_list" value="' + d.num + '">' + d.name + '</li>';
+    //             });
+    //             $("#hotel_list").html(hotelList);
+    //         }
+    //     });
+    // });
+
 </script>
-
-<%-- 달력 테스트 --%>
-<%--<script>--%>
-<%--    const config = {--%>
-<%--        enableTime: false,--%>
-<%--        dateFormat: "Y-m-d",--%>
-<%--    };--%>
-
-<%--    flatpickr("input[type=datetime-local]", config);--%>
-<%--</script>--%>

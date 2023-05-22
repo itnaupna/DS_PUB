@@ -8,10 +8,194 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair Display SC:wght@400&display=swap"/>
 <link rel="stylesheet" href="css/footer.css" type="text/css">
 <script type="text/javascript" src="/js/footer.js"></script>
+<style>
+    /* footer 기본 틀 */
+    .f_footer {
+        position: relative;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        height: 400px;
+        width: 100%;
+        background-color: black;
+    }
 
+    /* top1 div 위치 크기 설정 */
+    .f_top1 {
+        display: flex;
+        position: relative;
+        /*border: 2px solid yellow;*/
+        width: 1800px;
+        height: 150px;
+        margin: 0 auto;
+    }
 
+    /* 정렬 */
+    .f_footer .f_top1 .f_toplogo {
+        text-align: center;
+    }
 
+    /* img 크기, 마진설정 */
+    .f_footer .f_top1 .f_toplogo img {
+        display: inline-block;
+        width: 90px;
+        height: auto;
+        margin: 50px 50px auto;
+        /*vertical-align: middle;*/
+        align-content: space-between;
+    }
 
+    /* 두번째 div */
+    .f_footer .f_top2 {
+        display: flex;
+        text-align: center;
+        /*border: 3px solid red;*/
+        width: 1800px;
+        height: 230px;
+    }
+
+    .f_footer .f_top2 .f_banner {
+        /*border: 2px solid beige;*/
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .f_footer .f_top2 .f_banner .f_info {
+        display: flex;
+        height: auto;
+        width: auto;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+    }
+
+    .f_footer .f_top2 .f_banner .f_info a {
+        display: inline-block;
+        font-size: 15px;
+        margin-right: 20px;
+        color: white;
+        margin-bottom: 10px;
+    }
+
+    .f_footer .f_top2 .f_banner .f_info .f_gaein {
+        color: #989442;
+    }
+
+    .f_footer .f_top2 .f_banner .f_info2 {
+        width: 100%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 10px;
+    }
+
+    .f_footer .f_top2 .f_banner .f_info2 a {
+        display: inline-block;
+        font-size: 15px;
+        margin-right: 20px;
+        color: white;
+    }
+
+    .f_footer .f_top2 .f_banner .f_company {
+        width: 100%;
+        font-size: 14px;
+        color: #ccc;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    /* 반응형 설정 */
+    @media (max-width: 768px) {
+        .f_top1 {
+            width: 100%;
+            height: auto;
+            padding: 10px;
+            box-sizing: border-box;
+            flex-wrap: wrap;
+        }
+
+        .f_footer .f_top1 .f_toplogo img {
+            margin: 10px;
+        }
+
+        .f_top2 {
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .f_banner {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .f_footer .f_top2 .f_banner .f_info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .f_footer .f_top2 .f_banner .f_info a {
+            margin-right: 10px;
+            font-size: 10px;
+            height: auto;
+            width: auto;
+            transition: margin-right 0.6s ease-in-out, font-size 0.6s ease-in-out;
+        }
+
+        .f_footer .f_top2 .f_banner .f_info2 {
+            font-size: 10px;
+            justify-content: center;
+            transition: font-size 0.3s ease-in-out;
+        }
+
+        .f_footer .f_top2 .f_banner .f_company {
+            font-size: 12px;
+            text-align: center;
+            margin-top: 20px;
+            transition: font-size 0.6s ease-in-out;
+        }
+
+        .f_footer .f_top2 .f_banner .f_company p {
+            margin-top: 10px;
+        }
+
+        .f_banner .f_info a,
+        .f_banner .f_info2 a {
+            font-size: 12px;
+        }
+
+        .f_company {
+            font-size: 10px;
+        }
+
+        .f_footer .f_top2 .f_banner {
+            height: auto;
+            width: auto;
+        }
+
+        /* Additional style to handle transform animation */
+        .f_footer .f_top2 .f_banner.transformed {
+            transform: translateX(-100%);
+        }
+    }
+
+</style>
 <footer class="f_footer">
     <div class="f_top1">
         <div class="f_toplogo">
@@ -28,12 +212,6 @@
     </div>
 
     <div class="f_top2">
-        <div class="f_logo">
-            <a href="#">
-                <img src="./photo/josunresort.png">
-            </a>
-        </div>
-
         <div class="f_banner">
             <div class="f_info">
                 <a href="#">고객센터</a>
@@ -43,48 +221,22 @@
                 <a href="#">지류 이용권 이용약관</a>
                 <a href="#" class="f_gaein">개인정보처리방침</a>
                 <br>
-                <a href="#">영상정보처리기기운영·관리방침</a>
-                <a href="#">이메일무단수집금지</a>
+                <div class="f_info2">
+                    <a href="#">영상정보처리기기운영·관리방침</a>
+                    <a href="#">이메일무단수집금지</a>
+                </div>
             </div>
             <div class="f_company">
                 <p>서울시 강남구 Dream Stay <span class="ceo">대표이사 </span><span class="tel">T. 02-123-4567</span></p>
                 <p>사업자등록번호 222-11-00000 통신판매신고번호 강남 0000호</p>
                 <p>© 2023 Dream Stay &amp; RESORTS Co. All rights reserved.</p>
             </div>
-
         </div>
-<%--        <div class="dropdown_list" aria-expanded="false">--%>
-<%--            <div class="dropdown_value">--%>
-<%--                <input type="text" role="combobox" value="Family Sites" aria-expanded="false" tabindex="-1" readonly="">--%>
-<%--                <button type="button" aria-label="목록열기" class="btnopener"><i></i></button>--%>
-<%--            </div>--%>
-           <!-- <ul class="itemlist" role="listbox">
-                <li role="option"><a href="#" target="_blank">신세계그룹 인사이드</a></li>
-                <li role="option"><a href="#" target="_blank">SSG.COM</a></li>
-                <li role="option"><a href="#" target="_blank">신세계TV쇼핑</a></li>
-                <li role="option"><a href="#" target="_blank">신세계백화점</a></li>
-                <li role="option"><a href="#" target="_blank">이마트</a></li>
-                <li role="option"><a href="#" target="_blank">이마트 에브리데이</a></li>
-                <li role="option"><a href="#" target="_blank">이마트24</a></li>
-                <li role="option"><a href="#" target="_blank">까사미아</a></li>
-                <li role="option"><a href="#" target="_blank">신세계인터내셔날</a></li>
-                <li role="option"><a href="h#" target="_blank">신세계푸드</a></li>
-                <li role="option"><a href="#" target="_blank">신세계건설</a></li>
-                <li role="option"><a href="#" target="_blank">신세계I&amp;C</a></li>
-                <li role="option"><a href="#" target="_blank">스타벅스커피코리아</a></li>
-                <li role="option"><a href="#" target="_blank">신세계면세점</a></li>
-                <li role="option"><a href="#" target="_blank">신세계사이먼</a></li>
-                <li role="option"><a href="#" target="_blank">신세계 L&amp;B</a></li>
-                <li role="option"><a href="#" target="_blank">신세계 프라퍼티</a></li>
-                <li role="option"><a href="#" target="_blank">신세계센트럴시티</a></li>
-            </ul>
-            -->
-<%--            <div class="f_sns">--%>
-<%--                <div class="f_snsjosun"><a href="#" target="_blank">josun</a></div>--%>
-<%--                <div class="f_kakao"><a href="#" target="_blank">kakao</a></div>--%>
-<%--                <div class="f_insta"><a href="#" target="_blank">instagram</a></div>--%>
-<%--                <div class="f_youtube"><a href="#" target="_blank">youtube</a></div>--%>
-            </div>
-<%--        </div>--%>
-<%--    </div>--%>
+    </div>
 </footer>
+
+
+
+
+
+

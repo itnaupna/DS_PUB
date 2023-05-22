@@ -1,12 +1,9 @@
 package com.bitnc4.controller;
 
-import com.bitnc4.dto.HotelDto;
 import com.bitnc4.dto.MemberDto;
 import com.bitnc4.service.HotelService;
 import com.bitnc4.service.MemberService;
-import com.sun.tools.jconsole.JConsoleContext;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,15 +12,16 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.security.NoSuchAlgorithmException;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.List;
 
 @Slf4j
 @Controller
 @RequestMapping("/signup")
 public class MemberController {
+
+    private final String kCode = "09e7bd588320e6991f62d894f6a723a6";
+    private final String nCode = "2plAFu6gKZlsog8ZfGkK";
 
     @Autowired
     MemberService memberService;
@@ -90,7 +88,7 @@ public class MemberController {
         dto.setAddr("(" + zipcode + ")" + dto.getAddr() + addrdetail);
         dto.setEmail(dto.getEmail() + "@" + email_domain);
         memberService.joinMember(dto);
-        return "/main";
+        return "redirect:/";
     }
 
     // 로그인
@@ -191,23 +189,41 @@ public class MemberController {
         }
         return lockCount;
     }
+    
+    // 카카오 키 가져오기
+    @PostMapping("/kcode")
+    @ResponseBody
+    public String kCode() {
+        System.out.println(kCode);
+        return kCode;
+    }
 
     // 카카오 로그인
     @PostMapping("/kakaologin")
     @ResponseBody
     public String kakaoLogin(MemberDto socialLogin, HttpSession session) {
-        boolean memberChk = memberService.getSocialMember(socialLogin.getId(), String.valueOf(socialLogin.getIssocial()), socialLogin.getSocial() ) != null;
+        MemberDto socialMember =  memberService.getSocialMember(socialLogin.getId(), String.valueOf(socialLogin.getIssocial()), socialLogin.getSocial());
+        boolean memberChk = socialMember != null;
         System.out.println(memberChk);
+        System.out.println(socialLogin.getUser_name());
         if(memberChk) {
             System.out.println("아이디 있음");
-            session.setAttribute("loginuser", socialLogin);
+            session.setAttribute("loginuser", socialMember);
             System.out.println(session.getAttribute("loginuser"));
         } else {
             System.out.println("아이디 없음");
             memberService.socialJoin(socialLogin);
-            session.setAttribute("loginuser", socialLogin);
+            session.setAttribute("loginuser", memberService.getSocialMember(socialLogin.getId(), String.valueOf(socialLogin.getIssocial()), socialLogin.getSocial()));
         }
         return "redirect:/";
+    }
+
+    // 네이버 키 가져오기
+    @PostMapping("/ncode")
+    @ResponseBody
+    public String nCode() {
+        System.out.println(nCode);
+        return nCode;
     }
 
     // 네이버 팝업
@@ -220,17 +236,24 @@ public class MemberController {
     @PostMapping("/naverlogin")
     @ResponseBody
     public String naverLogin(MemberDto socialLogin, HttpSession session) {
-        boolean memberChk = memberService.getSocialMember(socialLogin.getId() , String.valueOf(socialLogin.getIssocial()), socialLogin.getSocial()) != null;
+        MemberDto socialMember =  memberService.getSocialMember(socialLogin.getId(), String.valueOf(socialLogin.getIssocial()), socialLogin.getSocial());
+        boolean memberChk = socialMember != null;
         System.out.println(memberChk);
         if(memberChk) {
             System.out.println("아이디 있음");
-            session.setAttribute("loginuser", socialLogin);
+            session.setAttribute("loginuser", socialMember);
             System.out.println(session.getAttribute("loginuser"));
         } else {
             System.out.println("아이디 없음");
             memberService.socialJoin(socialLogin);
-            session.setAttribute("loginuser", socialLogin);
+            session.setAttribute("loginuser", memberService.getSocialMember(socialLogin.getId(), String.valueOf(socialLogin.getIssocial()), socialLogin.getSocial()));
         }
         return "redirect:/";
+    }
+
+    //mail 양식 만들기
+    @GetMapping("/mail")
+    public String mail() {
+        return "/main/signup/mail";
     }
 }

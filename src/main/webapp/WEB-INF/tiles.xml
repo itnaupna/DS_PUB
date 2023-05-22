@@ -23,6 +23,7 @@
 		<put-attribute name="info" value="/WEB-INF/layout/mypagelayout/info.jsp"/>
 		<put-attribute name="mypagecontent" value="/WEB-INF/layout/mypagelayout/mypagemain.jsp"/>
 		<put-attribute name="footer2" value="/WEB-INF/layout/mypagelayout/footer2.jsp"/>
+		<put-attribute name="floating" value="/WEB-INF/layout/floatingchat.jsp"/>
 	</definition>
 
 	<!-- 아무 레이아웃 없는것 -->
@@ -38,10 +39,14 @@
 	<definition name="/admin" extends="adminLayout">
 		<put-attribute name="adminmain" value="/WEB-INF/layout/adminlayout/adminmain.jsp"/>
 	</definition>
-
 	<definition name="/mypage" extends="myPageLayout">
 		<put-attribute name="mypagecontent" value="/WEB-INF/layout/mypagelayout/mypagecontent.jsp"/>
 	</definition>
+	<definition name="/noLayout" extends="noLayout">
+		<put-attribute name="noLayout" value="/WEB-INF/layout/nolayout/main.jsp"/>
+	</definition>
+
+
 
 
 	<!-- wild card macro -->
@@ -59,5 +64,8 @@
 	</definition>
 	<definition name="/nolayout/*" extends="noLayout">
 		<put-attribute name="main" value="/WEB-INF/{1}.jsp"/>
+	</definition>
+	<definition name="/nolayout/*/*" extends="noLayout">
+		<put-attribute name="main" value="/WEB-INF/{1}/{2}.jsp"/>
 	</definition>
 </tiles-definitions>

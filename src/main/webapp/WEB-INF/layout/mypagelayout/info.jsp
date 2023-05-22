@@ -18,12 +18,21 @@
 
         <div class="m_myinfo">
             <div class="m_userid">
-                <p>${loginuser.user_name}님</p>
+                <p>${familyname}${firstname}님</p>
             </div>
         </div>
 
         <div class="m_info">
             <ul class="m_infoul">
+                <li>
+                    <span>예약확인</span>
+                    <ul>
+                        <li>
+                            <a href="/mypage">객실 예약</a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li>
                     <span>멤버십</span>
                     <ul>
@@ -41,7 +50,7 @@
                         </li>
 
                         <li>
-                            <a href="/mypage/qnaboard">문의 하기</a>
+                            <a href="/qnaboard">문의 하기</a>
                         </li>
                     </ul>
                 </li>

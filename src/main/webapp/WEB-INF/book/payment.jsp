@@ -6,8 +6,14 @@
 
 <style>
     <%-- first div --%>
+    @font-face {
+        font-family: 'GmarketSansMedium';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+        font-weight: 500;
+        font-style: normal;
+    }
     .book_main {
-        width: 2000px;
+        width: 1900px;
         height: 1900px;
         margin: 100px auto 0;
         display: flex;
@@ -50,6 +56,7 @@
         margin-top: 120px;
         font-size: 20px;
         margin-left: 260px;
+        font-family: 'GmarketSansMedium';
     }
 
     <%-- 두번째 div 큰 틀 --%>
@@ -72,13 +79,15 @@
     }
 
     .book_main .book_select .book_inner dl dt {
-        font-weight: revert;
+        font-weight: bold;
         color: black;
+        font-family: 'Playfair Display SC', serif;
     }
 
     .book_main .book_select .book_inner dl dd input[type=text] {
         border: none;
         background-color: #f9f9f9;
+        font-family: 'GmarketSansMedium';
     }
 
     .book_main .book_select .book_inner dl dd input[type=text]:focus {
@@ -96,6 +105,12 @@
         color: black;
         cursor: pointer;
         margin-top: 10px;
+        transition: 0.6s;
+        font-family: 'Playfair Display SC', serif;
+    }
+    .mainbtn:hover{
+        color: #ffffff;
+        background-color: #000000;
     }
 
     <%-- 3번째 div 틀 --%>
@@ -127,6 +142,9 @@
     .pay .pay_main .pay_name span {
         margin-bottom: 30px;
     }
+    .pay_name input{
+        font-family: 'GmarketSansMedium';
+    }
 
     .pay .pay_main .pay_phone {
         margin-top: 50px;
@@ -147,6 +165,7 @@
         position: relative;
         font-size: 15px;
         margin-top: 10px;
+        font-family: 'GmarketSansMedium' !important;
     }
 
     .pay .pay_main .pay_phone input[type=text]:focus {
@@ -174,7 +193,7 @@
 
     #email_custom_option {
         position: absolute;
-        top: 100%;
+        top: 98%;
         left: 0;
         right: 0;
         background-color: white;
@@ -187,7 +206,6 @@
         overflow-y: scroll;
         max-height: 150px;
         width: 200px;
-        margin-top: 45px;
     }
 
     #email_select_domain {
@@ -278,6 +296,8 @@
         position: relative;
         width: 400px;
         margin-top: 30px;
+        font-family: 'GmarketSansMedium' !important;
+
     }
 
     .selected {
@@ -326,6 +346,7 @@
         width: 400px;
         margin-top: 30px;
         margin-left: 100px;
+        font-family: 'GmarketSansMedium' !important;
     }
 
     .selected1 {
@@ -369,6 +390,7 @@
         position: relative;
         width: 400px;
         margin-top: 30px;
+
     }
 
     .selected2 {
@@ -399,6 +421,7 @@
         overflow-y: scroll;
         max-height: 150px;
         width: 900px;
+        z-index: 11;
     }
 
     .options2 li {
@@ -440,6 +463,7 @@
         left: 0;
         margin-left: 20px;
         margin-top: 20px;
+        font-family: 'GmarketSansMedium';
     }
 
     .sideBanner .txt-label .for_num {
@@ -455,16 +479,22 @@
 
     .pay_card p {
         margin-top: 40px;
+
     }
 
     .cardnumber p {
         margin-top: 40px;
+        font-family: 'Playfair Display SC', serif;
+    }
+    .cardnumber input{
+        font-family: 'GmarketSansMedium';
     }
 
     .ex_date {
         display: flex;
         flex-direction: column;
         margin-top: 40px;
+        font-family: 'Playfair Display SC', serif;
     }
 
     .sidehr {
@@ -472,15 +502,31 @@
     }
 
     .book_main .pay .sideBanner .txt-label .paybtn {
-        text-align: center;
-        font-size: 15px;
-        border-color: #000000;
-        border-width: thin;
         width: 250px;
         background-color: black;
         height: 60px;
         color: white;
         cursor: pointer;
+        padding: 0 25px;
+        font-size: 15px;
+        letter-spacing: -.01em;
+        text-align: center;
+        vertical-align: middle;
+        background-color: black;
+        color: white;
+        border: thin solid #000000;
+        border-radius: 0;
+        cursor: pointer;
+        overflow: hidden;
+        z-index: 1;
+        transition: 0.6s;
+        font-family: 'GmarketSansMedium';
+    }
+
+    .book_main .pay .sideBanner .txt-label .paybtn:hover{
+        transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+        background-color: white;
+        color: black;
     }
 
     .divbtn {
@@ -497,6 +543,7 @@
 
     .pay_card span {
         margin-left: 15px;
+        font-family: 'GmarketSansMedium';
     }
 
     .ex_card {
@@ -507,6 +554,7 @@
     .gujung {
         margin-top: 100px;
         left: 0;
+        font-family: 'GmarketSansMedium';
     }
 
     .gujung span {
@@ -530,6 +578,7 @@
         width: 880px;
         height: 200px;
         border-bottom: 1px solid #ccc;
+        font-family: 'GmarketSansMedium';
     }
 
     .gujung .close_toggle {
@@ -542,6 +591,7 @@
         line-height: 40px;
         font-size: 15px;
         list-style: none;
+
     }
 
     .clickimg {
@@ -553,11 +603,58 @@
         background: #ffffff url("/photo/arrow_196221.png") no-repeat;
         background-position: 99% center;
         background-size: 10px 10px;
-        width: 400px;
+        width: 450px;
     }
 
     .close_inul {
         list-style-type: none;
+    }
+
+    .book_memo {
+        margin-top: 50px;
+        font-family: 'Playfair Display SC', serif;
+    }
+
+    .book_memo input[type=text] {
+        width: 900px;
+        height: 100px;
+        text-align: left;
+        font-family: 'GmarketSansMedium';
+    }
+
+    .book_memo input[type=text]:focus {
+        outline: none;
+    }
+
+    .book_memo_input{
+        margin-top: 20px;
+    }
+
+    .nomember_name{
+        border: none;
+        border-bottom: 1px solid #ccc;
+        width: 300px;
+
+    }
+
+    .nomember_name:focus{
+        outline: none;
+    }
+
+    body{
+        /*overflow-x: hidden;*/
+    }
+    .pay_email input{
+        font-family: 'GmarketSansMedium';
+    }
+
+    .pay_choice p , .pay_room, .pay_name p, .pay_phone span, .pay_email span,  .ex_card,
+    .pay_card p
+    {
+        font-family: 'Playfair Display SC', serif;
+    }
+    #email_select_domain,#email_custom_option, .selected2, .options2,pay_card span{
+        font-family: 'GmarketSansMedium';
     }
 </style>
 
@@ -574,218 +671,256 @@
             </div>
         </div>
     </div>
+    <form method="post" id="bookform" name="bookform" action="insertbook">
+        <div class="book_select">
+            <div class="book_inner">
 
-    <div class="book_select">
-        <div class="book_inner">
+                <dl class="dl01">
+                    <dt>HOTEL</dt>
+                    <dd><input type="hidden" value="${selectedHotel}" readonly="readonly"></dd>
+                    <dd><input type="text" value="${hotelname }" readonly="readonly"></dd>
+                </dl>
 
-            <dl class="dl01">
-                <dt>HOTEL</dt>
-                <dd><input type="hidden" value="${selectedHotel}" readonly="readonly"></dd>
-                <dd><input type="text" value="${hotelname }" readonly="readonly"></dd>
-            </dl>
+                <input type="hidden" value="${sessionScope.checkIn}" name="checkIn">
+                <input type="hidden" value="${sessionScope.checkOut}" name="checkOut">
+                <dl class="dl02">
+                    <dt>DATE</dt>
+                    <dd><input type="text" value="${sessionScope.checkInShow}" readonly="readonly">
+                        <input type="text" value="${sessionScope.checkOutShow}" readonly="readonly"></dd>
+                </dl>
 
-            <dl class="dl02">
-                <dt>DATE</dt>
-                <dd><input type="text" value="${sessionScope.checkInShow}" readonly="readonly">
-                    <input type="text" value="${sessionScope.checkOutShow}" readonly="readonly"></dd>
-            </dl>
+                <dl class="dl03">
+                    <dt>ROOMS</dt>
+                    <dd><input type="text" value="${sessionScope.roomCount}" readonly="readonly"></dd>
+                </dl>
 
-            <dl class="dl03">
-                <dt>ROOMS</dt>
-                <dd><input type="text" value="${sessionScope.roomCount}" readonly="readonly"></dd>
-            </dl>
+                <dl class="dl04">
+                    <dt>ADULT</dt>
+                    <dd><input type="text" value="${sessionScope.adultCount}" readonly="readonly" name="adultCount"></dd>
+                </dl>
 
-            <dl class="dl04">
-                <dt>ADULT</dt>
-                <dd><input type="text" value="${sessionScope.adultCount}" readonly="readonly"></dd>
-            </dl>
+                <dl class="dl05">
+                    <dt>CHILDREN</dt>
+                    <dd><input type="text" value="${sessionScope.childrenCount}" readonly="readonly" name="childrenCount"></dd>
+                </dl>
 
-            <dl class="dl05">
-                <dt>CHILDREN</dt>
-                <dd><input type="text" value="${sessionScope.childrenCount}" readonly="readonly"></dd>
-            </dl>
-
-            <button type="button" onclick="location.href='/'" class="mainbtn">MAIN PAGE</button>
-        </div>
-    </div>
-
-    <section class="pay">
-        <%-- 플로팅 메뉴 --%>
-        <div class="sideBanner">
-            <div class="txt-label">
-                <span>객실예약</span>
-                <div class="for_num">
-                    <fmt:formatNumber type="number" maxFractionDigits="3" value="${roomprice}"/>
-                </div>
-                <hr class="sidehr">
-                <div class="divbtn">
-                    <button type="button" class="paybtn" onclick="payments();">예약완료</button>
-                </div>
+                <button type="button" onclick="location.href='/'" class="mainbtn">MAIN PAGE</button>
             </div>
         </div>
-        <%-- 플로팅 메뉴 --%>
 
-        <div class="pay_main">
-            <div class="pay_choice">
-                <p>SMART CHOICE</p>
-            </div>
-
-            <div class="pay_room">
-                <p>TYPE : ${roomtype}</p>
-            </div>
-
-            <div class="pay_name">
-                <p>RESERVATION NAME *</p>
-                <span>${memberDto.user_name}</span>
-            </div>
-
-            <div class="pay_phone">
-                <span>PHONE NUMBER *</span>
-                <input type="text" id="pay_phone" name="pay_phone" value="${memberDto.phone}">
-            </div>
-
-            <div class="pay_email">
-                <span class="sp_email">EMAIL *</span>
-                <input type="text" name="email" class="input_email" id="input_email" placeholder="이메일"
-                       value="${username}">
-                <span id="at">@</span>
-                <input type="text" name="input_domain" class="input_domain" id="input_domain" value="${domain}">
-                <div class="email_selectbox">
-                    <div id="email_select_domain">직접 입력</div>
-                    <ul id="email_custom_option">
-                        <li class="email_select_option">직접 입력</li>
-                        <li class="email_select_option">naver.com</li>
-                        <li class="email_select_option">gmail.com</li>
-                        <li class="email_select_option">hanmail.net</li>
-                        <li class="email_select_option">hotmail.com</li>
-                        <li class="email_select_option">nate.com</li>
-                    </ul>
+        <section class="pay">
+            <%-- 플로팅 메뉴 --%>
+            <div class="sideBanner">
+                <div class="txt-label">
+                    <span>객실예약</span>
+                    <div class="for_num">
+                        <fmt:formatNumber type="number" value="${roomprice }" pattern="#,##0원"/>
+                        <input type="hidden" name="roomprice" value="${roomprice }" required>
+                    </div>
+                    <hr class="sidehr">
+                    <div class="divbtn">
+                        <input type="hidden" name="peopleinfo">
+                        <button type="button" id="paybtn" class="paybtn" onclick="payment()">예약완료</button>
+                    </div>
                 </div>
             </div>
+            <%-- 플로팅 메뉴 --%>
 
-            <div class="pay_card">
-                <p>CREDIT CARD *</p>
-                <label>
-                    <input type="checkbox" class="chcard" id="chcard" name="gaein">
-                    <span>개인</span>
-                </label>
-
-                <label>
-                    <input type="checkbox" class="bupin" id="bupin" name="bupin">
-                    <span>법인</span>
-                </label>
-            </div>
-
-            <span class="ex_card">CREDIT CARD COMPANY*</span>
-            <div class="selectli2">
-                <div class="custom-select2">
-                    <div class="selected2">카드선택</div>
-                    <ul class="options2">
-                        <li>비씨</li>
-                        <li>국민</li>
-                        <li>하나</li>
-                        <li>삼성</li>
-                        <li>신한</li>
-                        <li>현대</li>
-                        <li>롯데</li>
-                        <li>시티</li>
-                        <li>농협</li>
-                        <li>수협</li>
-                        <li>우리</li>
-                        <li>카카오뱅크</li>
-                        <li>광주</li>
-                        <li>전북</li>
-                        <li>제주</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="cardnumber">
-                <p>CARD NUMBER *</p>
-                <input type="text" class="c_num" id="c_num1" placeholder="CARD NUMBER">
-                <input type="text" class="c_num" id="c_num2">
-                <input type="text" class="c_num" id="c_num3">
-                <input type="text" class="c_num" id="c_num4">
-            </div>
-
-            <span class="ex_date">EXPIRY DATE *</span>
-            <div class="selectli">
-                <div class="custom-select">
-                    <div class="selected">월</div>
-                    <ul class="options">
-                        <li>1월</li>
-                        <li>2월</li>
-                        <li>3월</li>
-                        <li>4월</li>
-                        <li>5월</li>
-                        <li>6월</li>
-                        <li>7월</li>
-                        <li>8월</li>
-                        <li>9월</li>
-                        <li>10월</li>
-                        <li>11월</li>
-                        <li>12월</li>
-                    </ul>
+            <div class="pay_main">
+                <div class="pay_choice">
+                    <p>SMART CHOICE</p>
                 </div>
 
-                <div class="custom-select1">
-                    <div class="selected1">년도</div>
-                    <ul class="options1">
-                        <li>2023년</li>
-                        <li>2024년</li>
-                        <li>2025년</li>
-                        <li>2026년</li>
-                        <li>2027년</li>
-                        <li>2028년</li>
-                        <li>2029년</li>
-                        <li>2030년</li>
-                        <li>2031년</li>
-                        <li>2032년</li>
-                        <li>2033년</li>
-                    </ul>
+                <div class="pay_room">
+                    <input type="hidden" name="roomnum" value="${roomnum }">
+                    <p>TYPE : ${roomtype}</p>
                 </div>
-            </div>
 
-            <div class="gujung">
-                <span>취소 규정</span>
-                <hr id="myhr" class="myhr">
+                <div class="pay_name">
+                    <p>RESERVATION NAME *</p>
+                    <c:if  test="${memberDto.user_name == null}">
+                        <span><input type="text" value="" name="nomember_name" class="nomember_name" required oninput="onlyKoEng(this)" maxlength="10" autofocus></span>
+                    </c:if>
+                    <c:if  test="${memberDto.user_name != null}">
+                        <span><input type="text" value="${familyname}${firstname}" name="nomember_name" class="nomember_name" readonly autofocus></span>
+                    </c:if>
+                </div>
 
-                <ul class="open_ul">
-                    <li class="open_li">
-                        <input type="checkbox">
-                        <label class="clickimg">
-                            [필수] 취소 및 노쇼(No - Show) 규정에 동의합니다
-                        </label>
-                    </li>
+                <div class="pay_phone">
+                    <span>PHONE NUMBER *</span>
+                    <c:if  test="${memberDto.user_name == null}">
+                        <input type="text" id="pay_phone" name="pay_phone" value="" required oninput="onlyPhone(this)" maxlength="11" placeholder="숫자만 입력가능합니다.">
+                    </c:if>
+                    <c:if  test="${memberDto.user_name != null}">
+                        <input type="text" id="pay_phone" name="pay_phone" value="${memberDto.phone}" readonly>
+                    </c:if>
+                </div>
 
-                    <div class="close_toggle">
-                        <ul class="close_ul">
-                            <li class="close_li">
-                                " 체크인 7일 전 오후 6시 이전 : 위약금 없이 변경 및 취소 가능 "
-                            </li>
+                <div class="pay_email">
+                    <span class="sp_email">EMAIL *</span>
+                    <c:if  test="${memberDto.user_name == null}">
+                        <input type="text" name="email" class="input_email" id="input_email" placeholder="이메일"
+                               value="" required oninput="onlyEngNum(this)">
+                    </c:if>
+                    <c:if  test="${memberDto.user_name != null}">
+                        <input type="text" name="email" class="input_email" id="input_email" placeholder="이메일"
+                               value="${username}" readonly>
+                    </c:if>
+                    <span id="at">@</span>
+                    <c:if  test="${memberDto.user_name == null}">
+                        <input type="text" name="input_domain" class="input_domain" id="input_domain" value="" required oninput="onlyEngNum(this)">
+                    </c:if>
+                    <c:if  test="${memberDto.user_name != null}">
+                        <input type="text" name="input_domain" class="input_domain" id="input_domain" value="${domain}" readonly>
+                    </c:if>
+                    <div class="email_selectbox">
+                        <c:if  test="${memberDto.user_name == null}">
+                            <div id="email_select_domain">직접 입력</div>
+                            <ul id="email_custom_option">
+                                <li class="email_select_option">naver.com</li>
+                                <li class="email_select_option">gmail.com</li>
+                                <li class="email_select_option">hanmail.net</li>
+                                <li class="email_select_option">hotmail.com</li>
+                                <li class="email_select_option">nate.com</li>
+                            </ul>
+                        </c:if>
+                    </div>
+                </div>
 
-                            <li>
-                                " 체크인 7일 전 오후 6시 이후 ~ 1일 전 오후 6시 이전 : 최초 1박 요금의 20% 부과 "
-                            </li>
+                <div class="pay_card">
+                    <p>CREDIT CARD *</p>
+                    <label>
+                        <input type="checkbox" class="chcard" id="chcard" name="gaein" checked>
+                        <span>개인</span>
+                    </label>
 
-                            <li>
-                                " 체크인 1일 전 오후 6시 이후 : 취소 및 No - Show 위약금 발생 "
-                                <ul class="close_inul">
-                                    <li>
-                                        " 1박 투숙 : 객실료의 80% 위약금 부과 "
-                                    </li>
+                    <label>
+                        <input type="checkbox" class="bupin" id="bupin" name="bupin">
+                        <span>법인</span>
+                    </label>
+                </div>
 
-                                    <li>
-                                        " 2박 이상 투숙 : 최초 1박 요금의 100% 부과 "
-                                    </li>
-                                </ul>
-                            </li>
+                <span class="ex_card">CREDIT CARD COMPANY*</span>
+                <div class="selectli2">
+                    <div class="custom-select2">
+                        <input type="hidden" value="" name="company" id="company" required>
+                        <div class="selected2">카드선택</div>
+                        <ul class="options2" >
+                            <li class="options2_list">비씨</li>
+                            <li class="options2_list">국민</li>
+                            <li class="options2_list">하나</li>
+                            <li class="options2_list">삼성</li>
+                            <li class="options2_list">신한</li>
+                            <li class="options2_list">현대</li>
+                            <li class="options2_list">롯데</li>
+                            <li class="options2_list">시티</li>
+                            <li class="options2_list">농협</li>
+                            <li class="options2_list">수협</li>
+                            <li class="options2_list">우리</li>
+                            <li class="options2_list">카카오뱅크</li>
+                            <li class="options2_list">광주</li>
+                            <li class="options2_list">전북</li>
+                            <li class="options2_list">제주</li>
                         </ul>
                     </div>
-                </ul>
+                </div>
+
+                <div class="cardnumber">
+                    <p>CARD NUMBER *</p>
+                    <input type="text" class="c_num" id="c_num1" placeholder="CARD NUMBER" name="c_num1" maxlength="4" required oninput="onlyNum()">
+                    <input type="text" class="c_num" id="c_num2" name="c_num2" maxlength="4" required oninput="onlyNum()">
+                    <input type="text" class="c_num" id="c_num3" name="c_num3" maxlength="4" required oninput="onlyNum()">
+                    <input type="text" class="c_num" id="c_num4" name="c_num4" maxlength="4" required oninput="onlyNum()">
+                </div>
+
+                <span class="ex_date">EXPIRY DATE *</span>
+                <div class="selectli">
+                    <div class="custom-select">
+                        <input type="hidden" value="" name="card_month" id="card_month" required>
+                        <div class="selected">월</div>
+                        <ul class="options">
+                            <li class="options_list">1월</li>
+                            <li class="options_list">2월</li>
+                            <li class="options_list">3월</li>
+                            <li class="options_list">4월</li>
+                            <li class="options_list">5월</li>
+                            <li class="options_list">6월</li>
+                            <li class="options_list">7월</li>
+                            <li class="options_list">8월</li>
+                            <li class="options_list">9월</li>
+                            <li class="options_list">10월</li>
+                            <li class="options_list">11월</li>
+                            <li class="options_list">12월</li>
+                        </ul>
+                    </div>
+
+                    <div class="custom-select1">
+                        <input type="hidden" value="" name="card_year" id="card_year" required>
+                        <div class="selected1">년도</div>
+                        <ul class="options1">
+                            <li class="options1_list">2023년</li>
+                            <li class="options1_list">2024년</li>
+                            <li class="options1_list">2025년</li>
+                            <li class="options1_list">2026년</li>
+                            <li class="options1_list">2027년</li>
+                            <li class="options1_list">2028년</li>
+                            <li class="options1_list">2029년</li>
+                            <li class="options1_list">2030년</li>
+                            <li class="options1_list">2031년</li>
+                            <li class="options1_list">2032년</li>
+                            <li class="options1_list">2033년</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="book_memo">
+                    <span>REQUESTS  </span>
+                    <div class="book_memo_input">
+                        <input type="text" name="memo" class="memo" placeholder="추가 요구사항을 적어주세요">
+                    </div>
+                </div>
+
+                <div class="gujung">
+                    <span>취소 규정</span>
+                    <hr id="myhr" class="myhr">
+
+                    <ul class="open_ul">
+                        <li class="open_li">
+                            <input type="checkbox" id="checkbox">
+                            <label class="clickimg">
+                                [필수] 취소 및 노쇼(No - Show) 규정에 동의합니다
+                            </label>
+                        </li>
+
+                        <div class="close_toggle">
+                            <ul class="close_ul">
+                                <li class="close_li">
+                                    " 체크인 7일 전 오후 6시 이전 : 위약금 없이 변경 및 취소 가능 "
+                                </li>
+
+                                <li>
+                                    " 체크인 7일 전 오후 6시 이후 ~ 1일 전 오후 6시 이전 : 최초 1박 요금의 20% 부과 "
+                                </li>
+
+                                <li>
+                                    " 체크인 1일 전 오후 6시 이후 : 취소 및 No - Show 위약금 발생 "
+                                    <ul class="close_inul">
+                                        <li>
+                                            " 1박 투숙 : 객실료의 80% 위약금 부과 "
+                                        </li>
+
+                                        <li>
+                                            " 2박 이상 투숙 : 최초 1박 요금의 100% 부과 "
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </form>
 </div>
 
 <script>
@@ -894,6 +1029,7 @@
         }
     });
 
+    // 토스api
     var clientKey = 'test_ck_d26DlbXAaV0xjj5gR9dVqY50Q9RB'
     var tossPayments = TossPayments(clientKey) // 클라이언트 키로 초기화하기
 
@@ -909,4 +1045,122 @@
             failUrl: "http://localhost:8080/book/payment"
         });
     }
+
+    var company = $("#company").val();
+    var card_month = $("#card_month").val();
+    var card_year = $("#card_year").val();
+
+    $(".options2_list").click(function (){
+        var selected2 = $(this).text();
+        $("#company").val(selected2);
+        company = $("#company").val(selected2);
+    });
+    $(".options_list").click(function (){
+        var selected = $(this).text();
+        $("#card_month").val(selected);
+        card_month = $("#card_month").val(selected);
+    });
+    $(".options1_list").click(function (){
+        var selected1 = $(this).text();
+        $("#card_year").val(selected1);
+        card_year = $("#card_year").val(selected1);
+    });
+    function payment() {
+        var nomember_name = $(".nomember_name").val();
+        var pay_phone = $("#pay_phone").val();
+        var input_email = $("#input_email").val();
+        var input_domain = $("#input_domain").val();
+        var c_num1 = $("#c_num1").val();
+        var c_num2 = $("#c_num2").val();
+        var c_num3 = $("#c_num3").val();
+        var c_num4 = $("#c_num4").val();
+        const checkbox = document.getElementById('checkbox');
+        const is_checked = checkbox.checked;
+
+
+        if (nomember_name == "") {
+            alert("이름을 입력해 주세요.");
+            $(".nomember_name").focus();
+        }
+        if (pay_phone == "" && nomember_name != "") {
+            alert("휴대폰 번호를 입력해 주세요.");
+            $("#pay_phone").focus();
+        }
+        if (input_email == "" && nomember_name != "" && pay_phone != "" || input_domain == "" && nomember_name != "" && pay_phone != "") {
+            alert("이메일을 입력해 주세요.");
+            $("#input_email").focus();
+        }
+        if (company == "" && input_email != "" && input_domain != "" && nomember_name != "" && pay_phone != "") {
+            alert("카드 회사를 선택해 주세요.");
+        }
+        if (c_num1 == "" && company != "" && input_email != "" && input_domain != "" && nomember_name != "" && pay_phone != "") {
+            alert("카드번호를 입력해 주세요.");
+            $("#c_num1").focus();
+        }
+        if (c_num2 == "" && c_num1 != "" && company != "" && input_email != "" && input_domain != "" && nomember_name != "" && pay_phone != "") {
+            alert("카드번호를 입력해 주세요.");
+            $("#c_num2").focus();
+        }
+        if (c_num3 == "" && c_num2 != "" && c_num1 != "" && company != "" && input_email != "" && input_domain != "" && nomember_name != "" && pay_phone != "") {
+            alert("카드번호를 입력해 주세요.");
+            $("#c_num3").focus();
+        }
+        if (c_num4 == "" && c_num3 != "" && c_num2 != "" && c_num1 != "" && company != "" && input_email != "" && input_domain != "" && nomember_name != "" && pay_phone != "") {
+            alert("카드번호를 입력해 주세요.");
+            $("#c_num4").focus();
+        }
+        if (card_month == "" && c_num4 != "" && c_num3 != "" && c_num2 != "" && c_num1 != "" && company != "" && input_email != "" && input_domain != "" && nomember_name != "" && pay_phone != "") {
+            alert("카드 유효기간(월)을 선택해 주세요.");
+        }
+        if (card_year == "" && card_month != "" && c_num4 != "" && c_num3 != "" && c_num2 != "" && c_num1 != "" && company != "" && input_email != "" && input_domain != "" && nomember_name != "" && pay_phone != "") {
+            alert("카드 유효기간(년도)을 선택해 주세요.");
+        }
+        if (is_checked == false && c_num4 != "" && c_num3 != "" && c_num2 != "" && c_num1 != "" && card_year != "" && card_month != "" && company != "" && input_email != "" && input_domain != "" && nomember_name != "" && pay_phone != "") {
+            alert("필수 규정을 확인하시고 체크해 주세요.");
+        }
+        if (is_checked == true && c_num4 != "" && c_num3 != "" && c_num2 != "" && c_num1 != "" && card_year != "" && card_month != "" && company != "" && input_email != "" && input_domain != "" && nomember_name != "" && pay_phone != "") {
+            document.getElementById("bookform").submit();
+        }
+    }
+    //영어와 숫자만
+    function onlyEngNum(e) {
+        const regex = /[^A-Za-z0-9.]/g;
+        if (regex.test(e.value)) {
+            alert('영문자,숫자, . 만 입력 가능합니다');
+            e.value = e.value.replace(regex, '');
+        }
+    }
+
+    // 전화번호 입력
+    function onlyPhone(target) {
+        target.value = target.value
+            .replace(/[^0-9]/g, '')
+            .replace(/(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
+    }
+
+    const phoneInput = document.querySelector('#pay_phone');
+    phoneInput.addEventListener('input', (e) => {
+        if (/[^0-9]/g.test(e.target.value)) {
+            e.target.value = e.target.value.replace(/[^0-9]/g, '');
+        }
+    });
+
+    // 한글과 영문만
+    function onlyKoEng(e) {
+        const regex = /[^(ㄱ-힣a-zA-Z)]/gi;
+        if (regex.test(e.value)) {
+            alert("한글과 영문만 입력 가능합니다");
+            e.value = e.value.replace(regex, '');
+        }
+    }
+
+    // 숫자만 입력
+    function onlyNum(e) {
+        const regex = /[^0-9]/g;
+        if (regex.test(e.value)) {
+            alert("숫자만 입력 가능합니다");
+            e.value = e.value.replace(regex, '');
+        }
+    }
+
 </script>

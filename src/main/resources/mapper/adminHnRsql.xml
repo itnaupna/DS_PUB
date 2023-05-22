@@ -31,7 +31,7 @@
         delete from room where num=#{roomnum}
     </update>
     <select id="getMemberCount" resultType="int">
-        select count(*) from member where user_level&lt;10
+        select count(*) from member where user_level between 1 and 9
     </select>
     <select id="getHotelCount" resultType="int">
         select count(*) from hotel
@@ -44,5 +44,11 @@
             update room set roomdetail=#{roomdetail},roomphoto=#{roomphoto} where num=#{num} and hotelnum=#{hotelnum}
         </if>
 
+    </update>
+    <select id="getRoomSimpleInfo" parameterType="int" resultType="RoomDto">
+        select num, roomtype, roomprice, roommemo, islock from room where num=#{num}
+    </select>
+    <update id="updateRoomSimpleInfo" parameterType="RoomDto">
+        update room set roomtype=#{roomtype},roomprice=#{roomprice},roommemo=#{roommemo},islock=#{islock} where num=#{num}
     </update>
 </mapper>

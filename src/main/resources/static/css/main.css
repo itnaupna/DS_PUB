@@ -13,7 +13,7 @@
     width: 100%; height: 300px;
 
     /* 배경이미지는 최소 1920*960으로 제작해야 문제가 안생김 */
-    background-image: url("https://www.josunhotel.com/revolution/content/fileImage.do?fileId=255595&cntntsSn=255594");
+   /* background-image: url("../photo/page4_box_logo_01.jpg");*/
     background-repeat: no-repeat; /* 배경이미지X */
     background-size: cover; /* 요소를 비율에 맞게 커버 */
     background-position: center; /* 이미지를 요소의 정가운데로 처리 */
@@ -213,7 +213,7 @@
     left: 43%;
     margin-left: 150px;
     transform: translateX(-50%);
-    z-index: 9999;
+    /*z-index: 9999;*/
     position: relative !important;
     top: 31%;
 }
@@ -509,4 +509,368 @@
 #total_calendars{
     margin-left: 25px;
     display: inline-block;
+}
+#select_hotel{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+    width: 280px;
+    font-weight: bold;
+    padding-left: 0;
+    display: inline-block;
+    position: relative;
+}
+#select_hotel:focus {
+    outline: none;
+
+}
+
+#select_hotels {
+    position: absolute;
+    top: -117%;
+    left: 0%;
+    right: 0%;
+    height: 480px;
+    width: 1408px;
+    background-color: #ffffff;
+}
+#select_hotel_body{
+    position: absolute;
+    height: 480px;
+    width: 1408px;
+    left: 0;
+}
+
+#room_options {
+    position: absolute;
+    top: -117%;
+    left: 0%;
+    right: 0%;
+    height: 480px;
+    width: 1408px;
+    background-color: #ffffff;
+}
+#room_options_body{
+    position: absolute;
+    height: 480px;
+    width: 1408px;
+}
+.room_option {
+    font-size: 20px;
+    width: 1408px;
+    height: 160px;
+    padding: 20px 20px 20px 20px;
+    box-sizing: border-box;
+    /*border: 1px solid #000000;*/
+    position: absolute;
+    background-color: #ffffff;
+    color:  #000000;
+    left: 0;
+    line-height: 120px;
+}
+#room_option01_select{
+}
+#room_option02_select{
+    top: 160px;
+}
+#room_option03_select{
+    top: 320px;
+}
+.roomContainer{
+    color: black;
+    list-style: none;
+}
+.mainRoom{
+    left:-965px;padding:90px 220px;
+    height: 480px;
+}
+.mainRoom .roomContainer{
+    padding:0;
+}
+.mainRoom .roomContainer .txtGuide{
+    position:absolute;
+    right:200px;
+    bottom:180px;
+}
+.mainRoom .roomContainer .txtGuide.gjb{
+    right:40px
+}
+.mainRoom .roomContainer .txtGuide li{
+    display:block
+}
+.mainRoom .roomInner{
+    position:relative;
+    padding-left:130px
+}
+.mainRoom .roomSel{
+    width:700px;
+    margin:30px 0 0;
+}
+.mainRoom .roomSel+.roomSel{
+    margin:80px 0 0;
+}
+.mainRoom .roomTit{
+    position:absolute;
+    left:0;
+    top:50%;
+    margin-top:-18px;
+    width:130px;
+    text-align:left;
+    font-size:24px;
+    font-weight:500;
+}
+.mainRoom .numPeople{
+    width: 200px;
+    border-bottom: 1px solid #000000;
+    text-align: center;
+    padding: 0 20px 10px 20px;
+}
+.mainRoom .numPeople+.numPeople{
+    margin-left:40px
+}
+#toggleop_select{
+    display: inline-block;
+}
+.numWrap {
+    display: flex;
+    align-items: center;
+}
+
+.numPeople {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+.btnDown,.btnUp{
+    border: none;
+}
+#btnDown_01{
+    border: none;
+}
+#room_cnt,#adult_cnt,#children_cnt{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+    width: 70px;
+    font-weight: bold;
+    padding-left: 0;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+}
+#room_cnt:focus, #adult_cnt:focus, #children_cnt:focus{
+    outline: none;
+}
+#select_hotels{
+    overflow:auto;
+}
+#select_hotels::-webkit-scrollbar {
+    display: none;
+}
+#select_hotels_container{
+    position: relative;
+    top: 75px;
+    width: 100%;
+    height: 405px;
+    text-align: center;
+}
+#select_hotel_list_name{
+    text-align: center;
+    border: 1px solid rgba(200,200,200,1);
+    display: inline-block;
+    width: 25%;
+    height: 150px;
+    line-height: 150px;
+    margin-top: 5px;
+    margin-left: 2.5px;
+    margin-right: 2.5px;
+    margin-bottom: 5px;
+    font-size: 20px;
+    background-size: 348px 148px;
+    text-shadow: 0px 0px 5px black;
+    font-weight: bold;
+    color: white;
+    background-position: center;
+}
+#select_hotel_list_name::before{
+    content: "";
+    opacity: 0.5;
+    position: absolute;
+    background-color: #000;
+    background-position: center;
+}
+#select_hotel_list_name:hover{
+    background-size: 417.6px 177.6px;
+    background-position: center;
+    transition: .5s;
+}
+/*신동휘 작품*/
+#select_hotel_list_name:not(:hover){
+    background-size: 348px 148px;
+    transition: .5s;
+    background-position: center;
+}
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+.section_3{
+    text-align: center;
+    color: #000000;
+    font-size: 20px;
+
+
+}
+#section_3_body{
+    border-radius: 10px;
+    display: inline-block;
+    height: 500px;
+    width: 1200px;
+    background-color: #ffffff;
+    text-align: center;
+}
+#section_3_logo{
+
+    display: inline-block;
+    position: relative;
+    height: 400px;
+    width: 400px;
+    left: -1%;
+    top: -135px;
+
+}
+#section_3_text_body{
+
+    display: inline-block;
+    height: 350px;
+    width: 700px;
+    margin-top: 75px;
+    line-height: 20px;
+    left: 30%;
+    padding-top: 65px;
+}
+#section_3_text1{
+    font-weight: bold;
+    font-size: 28px;
+    height: 70px;
+}
+#section_3_text2{
+    display: inline-block;
+    height: 100px;
+    width: 700px;
+    margin-top:50px;
+    line-height: 20px;
+    left: 30%;
+    text-align: center;
+}
+#section_3_logo img {
+    width: 400px;
+    height: 400px;
+}
+#main_txt,#main_border_01,#main_mini_dl_01_room,#main_border_02,#main_border_03,.op_select,
+#search_box,.calendar,.one_cont_sub_txt > h2, #page4_main_title
+{
+    font-family: 'Playfair Display SC', serif;
+}
+#main_mini_dl_02_hotel,#main_mini_dl_03_check,#room_option03,#room_option02,#room_option01,.dates02,.dates,.title,#select_hotels_container
+,.one_cont_sub_txt,.section_3,#page4_sub_title,.page4_box_logo div{
+    font-family: 'GmarketSansMedium';
+}
+.page4_box_logo_img{
+    width: 160px;
+    height: 70px;
+}
+.bg_imgs04::after{
+    width: 100%;
+    height: 100%;
+    content: "";
+    background-image: url("../photo/page4_box_logo_01.jpg");
+    background-repeat: no-repeat; /* 배경이미지X */
+    background-size: cover; /* 요소를 비율에 맞게 커버 */
+    background-position: center; /* 이미지를 요소의 정가운데로 처리 */
+    background-attachment: fixed !important;/* 스크롤바 움직일때 이미지가 따라다님 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.bg_imgs04_01::before{
+    opacity: 0;
+    transition: 0.1s;
+}
+.bg_imgs04_01::after{
+    background-image: url("../photo/page4_box_logo_01.jpg");
+    opacity: 1;
+    transition: 0.35s;
+}
+.bg_imgs04_02::before{
+    opacity: 0;
+    transition: 0.1s;
+}
+.bg_imgs04_02::after{
+    background-image: url("../photo/page4_box_logo_02.jpg");
+    opacity: 1;
+    transition: 0.35s;
+}
+.bg_imgs04_03::before{
+    opacity: 0;
+    transition: 0.1s;
+}
+.bg_imgs04_03::after{
+    background-image: url("../photo/page4_box_logo_03.jpg");
+    opacity: 1;
+    transition: 0.35s;
+}
+.bg_imgs04_04::before{
+    opacity: 0;
+    transition: 0.1s;
+}
+.bg_imgs04_04::after{
+    background-image: url("../photo/page4_box_logo_04.jpg");
+    opacity: 1;
+    transition: 0.35s;
+}
+.bg_imgs04_05::before{
+    opacity: 0;
+    transition: 0.1s;
+}
+.bg_imgs04_05::after{
+    background-image: url("../photo/page4_box_logo_05.jpg");
+    opacity: 1;
+    transition: 0.35s;
+}
+.bg_imgs04_06::before{
+    opacity: 0;
+    transition: 0.1s;
+}
+.bg_imgs04_06::after{
+    background-image: url("../photo/page4_box_logo_06.jpg");
+    opacity: 1;
+    transition: 0.35s;
+}
+.bg_imgs04_07::before{
+    opacity: 0;
+    transition: 0.1s;
+}
+.bg_imgs04_07::after{
+    background-image: url("../photo/page4_box_logo_07.jpg");
+    opacity: 1;
+    transition: 0.35s;
+}
+.bg_imgs04_08::before{
+    opacity: 0;
+    transition: 0.1s;
+}
+.bg_imgs04_08::after{
+    background-image: url("../photo/page4_box_logo_08.jpg");
+    opacity: 1;
+    transition: 0.35s;
 }

@@ -133,11 +133,12 @@ $('#CheckEmailBtn').click(function (e) {
 });
 
 // 아이디 중복체크 스크립트
+let idOverlapReg = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{5,15}$/;
 $("#id_check").click(function (e) {
 
     let id = $("#id").val();
     console.log(id.length);
-    if(id != "" && (id.length >= 5 && id.length <= 15)) {
+    if(id.match(idOverlapReg) != null) {
         $.ajax({
             type: 'get',
             url: '/signup/overlapid',
@@ -157,7 +158,7 @@ $("#id_check").click(function (e) {
             }
         });
     } else {
-        alert("아이디는 5자리 이상 15이하로 사용가능합니다");
+        alert("아이디는 영문 숫자 포함 5자리 이상 15이하로 사용가능합니다");
     }
 
 });
@@ -200,16 +201,20 @@ $("#signupBtn").click(function(){
             $("#search_addr").focus();
         }
         if(joinConfirm.c_phonenum == false) {
-            $("#join_null_check_phonenum").html("휴대폰 번호를 입력해주세요").css("color", "red");
+            $("#join_null_check_phonenum").html("휴대폰 번호를 입력해주세요(9 ~ 11 자리 숫자)").css("color", "red");
             $("#phone").focus();
         }
         if (joinConfirm.c_email == false) {
             $("#join_code_chk").html("인증확인이 필요합니다").css("color", "red");
             $("#email_code").focus();
         }
-        if (joinConfirm.c_pw == false || joinConfirm.c_pwform == false) {
+        if (joinConfirm.c_pwform == false) {
             $("#pwform").text("비밀번호는 특수문자, 문자, 숫자 포함 8 ~ 15 자리의 형태로 사용 가능합니다").css("color", "red");
             $("#pw").focus();
+        }
+        if (joinConfirm.c_pw == false) {
+            $("#successpwCheck").text("비밀번호가 일치합니다").css("color", "red");
+            $("#pwchk").focus();
         }
         if (joinConfirm.c_id == false) {
             $("#join_idchk").html("중복확인이 필요합니다").css("color", "red");
@@ -220,14 +225,21 @@ $("#signupBtn").click(function(){
             $("#family_name").focus();
         }
         if(joinConfirm.c_name && joinConfirm.c_id && joinConfirm.c_pw && joinConfirm.c_pwform && joinConfirm.c_email && joinConfirm.c_phonenum && joinConfirm.c_addr) {
+            alert("회원가입이 완료되었습니다.");
             $("#join_form").submit();
         }
-
 });
 
-
+//특수문자, 괄호, 공백 모두 제거 - 점은 제거 안함
+let nameReg = /[^a-zA-Zㄱ-ㅎ가-힣]/gi;
 $("#family_name, #user_name").on("input", function() {
-    if($("family_name").val() != "" && $("#user_name").val() != "") {
+    let name = $(this).val();
+
+    if(name.match(nameReg) != null) {
+        console.log(name);
+        name = name.replaceAll(nameReg, "");
+        $(this).val(name);
+    } else{
         $("#join_null_check_name").html("");
         joinConfirm.c_name = true;
         console.log(joinConfirm.c_name);
@@ -246,10 +258,24 @@ $("#email").on("input", function(){
     console.log("email=" + joinConfirm.c_email);
 });
 
+let phoneReg = /^\d{9,11}$/gi;
+let numReg = /[^0-9]/g;
 $("#phone").on("input", function() {
-    if($(this).val() != "") {
+    let phoneVal = $(this).val();
+
+    if(phoneVal.match(numReg) != null) {
+        phoneVal = phoneVal.replaceAll(numReg, "");
+        $(this).val(phoneVal);
+        joinConfirm.c_phonenum = false;
+        console.log(joinConfirm.c_phonenum);
+    } else if(phoneVal.length > 11) {
+        alert("번호가 너무 깁니다");
+        phoneVal = phoneVal.substring(0, 11);
+        $(this).val(phoneVal);
+    } else if(phoneVal.match(numReg) == null && phoneVal.match(phoneReg) != null) {
         joinConfirm.c_phonenum = true;
         $("#join_null_check_phonenum").html("");
+        console.log(joinConfirm.c_phonenum);
     }
 });
 
